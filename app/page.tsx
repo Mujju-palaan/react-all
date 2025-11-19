@@ -1,0 +1,14 @@
+import Link from "next/link";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col min-h-screen bg-zinc-50 font-sans dark:bg-black m-8">
+      <h1 className="text-4xl	text-center">React udemy course</h1>
+      <ul className="list-disc list-inside text-left">
+        <li><Link href={`/tabs`}>Tabs (OnClick change data)</Link></li>
+        <li><Link href={`/`}>b</Link></li>
+        <li><Link href={`/`}>c</Link></li>
+      </ul>
+    </div>
+  );
+}
