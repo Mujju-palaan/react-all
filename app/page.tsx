@@ -6,7 +6,7 @@ export default function Home() {
       <h1 className="text-4xl	text-center">React udemy course</h1>
       <ul className="list-disc list-inside text-left">
         <li><Link href={`/tabs`}>Tabs (OnClick change data)</Link></li>
-        <li><Link href={`/`}>b</Link></li>
+        <li><Link href={`/tic-tac-toe`}>Tic-Tac-Toe Game</Link></li>
         <li><Link href={`/`}>c</Link></li>
       </ul>
     </div>
