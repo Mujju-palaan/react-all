@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import Input from "./Input";
 
 type StateKey = 'initialInvestment' | 'annualInvestment' | 'expectedReturn' | 'duration';
@@ -9,18 +8,13 @@ interface UserInput {
   newValue: number | string;
   e: React.ChangeEvent<HTMLInputElement>;
 }
-const Form = () => {
-  const [userInput, setUserInput] = useState({
-    initialInvestment: 10001,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
+const Form = ({userInput, setUserInput}:any) => {
+
 
   const handleChange = ({e, inputIdentifier, newValue}:UserInput) => {
 
-    console.log("Updated:", inputIdentifier, "→", newValue);
-    setUserInput((prev) => ({
+    // console.log("Updated:", inputIdentifier, "→", newValue);
+    setUserInput((prev:any) => ({
       ...prev,
       [inputIdentifier]: Number(newValue),
     }));
