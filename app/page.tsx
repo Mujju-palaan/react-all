@@ -8,6 +8,7 @@ export default function Home() {
         <li><Link href={`/tabs`}>Tabs (OnClick change data)</Link></li>
         <li><Link href={`/tic-tac-toe`}>Tic-Tac-Toe Game</Link></li>
         <li><Link href={`/investment-calculator`}>Investment Calculator</Link></li>
+        <li><Link href={`/countdown`}>Countdown</Link></li>
       </ul>
     </div>
   );
