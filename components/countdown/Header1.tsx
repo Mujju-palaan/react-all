@@ -13,7 +13,7 @@ const Header1 = () => {
 };
 
   return (
-    <div className="bg-black p-16 rounded text-amber-50 justify-self-center text-center">
+    <div className="p-16 text-amber-50 justify-self-center text-center">
       <h1 className="text-3xl">THE ALMOST FINAL COUNTDOWN</h1>
       <p className="text-green-200">
         Stop the timer once you estimate that time is (almost) up
