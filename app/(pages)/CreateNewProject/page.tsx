@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import SideBar from "@/components/CreateNewProject/SideBar";
 import NoPageSelected from "@/components/CreateNewProject/NoPageSelected";
 import ProjectForm from "@/components/CreateNewProject/ProjectForm";
@@ -30,19 +30,20 @@ const Page = () => {
   }
 
   function handleSaveProject(projectData: ProjectData) {
-  setProjectState(prev => {
-    const newProject: Project = {
-      id: Math.random(),
-      ...projectData,
-    };
+    setProjectState((prev) => {
+      const newProject: Project = {
+        id: Math.random(),
+        ...projectData,
+      };
 
-    return {
-      ...prev,
-      projects: [...prev.projects, newProject], // ✔ now iterable
-    };
-  });
-}
-    console.log(projectState.projects);
+      return {
+        ...prev,
+        selectedProjectID: undefined,
+        projects: [...prev.projects, newProject], // ✔ now iterable
+      };
+    });
+  }
+  console.log(projectState.projects);
 
   function handelCancelButton() {
     setProjectState((prev) => ({
@@ -53,16 +54,29 @@ const Page = () => {
 
   let content;
   if (projectState.selectedProjectID === undefined) {
-    content = <NoPageSelected handleAddProjectButton={handleAddProjectButton} />;
+    content = (
+      <NoPageSelected handleAddProjectButton={handleAddProjectButton} />
+    );
   } else if (projectState.selectedProjectID === null) {
-    content = <ProjectForm handelSavedData={handleSaveProject} handelCancelButton={handelCancelButton} />;
+    content = (
+      <ProjectForm
+        handelSavedData={handleSaveProject}
+        handelCancelButton={handelCancelButton}
+      />
+    );
   }
+  console.log("page", projectState.projects);
 
   return (
-    <div className="min-h-screen flex">
-      <SideBar handleAddProjectButton={handleAddProjectButton} />
-      {content}
-    </div>
+    <>
+      <div className="min-h-screen flex">
+        <SideBar
+          projects={projectState.projects}
+          handleAddProjectButton={handleAddProjectButton}
+        />
+        {content}
+      </div>
+    </>
   );
 };
 
