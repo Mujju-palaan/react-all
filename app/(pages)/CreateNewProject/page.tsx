@@ -113,7 +113,7 @@ const Page = () => {
     <SelectedProject
       project={selectProject}
       handelDeleteProject={handelDeleteProject}
-      handelAddTask={handelAddTask}
+      handelAddTask={handelAddTask} 
       handelDeleteTask={handelDeleteTask}
       tasks={projectState.tasks}
     />
