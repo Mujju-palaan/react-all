@@ -1,6 +1,6 @@
 import React from 'react'
-import Tabsection from '../../../components/tabs/Tabsection'
-import TabsCard from '@/components/tabs/TabsCard'
+import Tabsection from '../../../components/1)tabs/Tabsection'
+import TabsCard from '@/components/1)tabs/TabsCard'
 
 const pages = () => {
   return (

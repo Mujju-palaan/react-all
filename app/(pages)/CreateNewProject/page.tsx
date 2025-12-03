@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import SideBar from "@/components/CreateNewProject/SideBar";
-import NoPageSelected from "@/components/CreateNewProject/NoPageSelected";
-import ProjectForm from "@/components/CreateNewProject/ProjectForm";
-import SelectedProject from "@/components/CreateNewProject/SelectedProject";
+import SideBar from "@/components/5)CreateNewProject/SideBar";
+import NoPageSelected from "@/components/5)CreateNewProject/NoPageSelected";
+import ProjectForm from "@/components/5)CreateNewProject/ProjectForm";
+import SelectedProject from "@/components/5)CreateNewProject/SelectedProject";
 
 export type ProjectData = {
   title: string;

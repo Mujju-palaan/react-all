@@ -1,6 +1,6 @@
-import Header from '@/components/countdown/Header'
-import Header1 from '@/components/countdown/Header1'
-import Timer from '@/components/countdown/Timer'
+import Header from '@/components/4)countdown/Header'
+import Header1 from '@/components/4)countdown/Header1'
+import Timer from '@/components/4)countdown/Timer'
 import React from 'react'
 
 const page = () => {

@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react'
-import Form from '@/components/investment-calculator/Form'
-import Header from '@/components/investment-calculator/Header'
-import TableData from '@/components/investment-calculator/TableData'
+import Form from '@/components/3)investment-calculator/Form'
+import Header from '@/components/3)investment-calculator/Header'
+import TableData from '@/components/3)investment-calculator/TableData'
 
 interface UserInputType {
   initialInvestment: number

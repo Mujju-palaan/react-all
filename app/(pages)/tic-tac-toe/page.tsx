@@ -1,5 +1,5 @@
-import GameBody from '@/components/tic-tac-toe/GameBody'
-import GameHeader from '@/components/tic-tac-toe/GameHeader'
+import GameBody from '@/components/2)tic-tac-toe/GameBody'
+import GameHeader from '@/components/2)tic-tac-toe/GameHeader'
 import Image from 'next/image'
 import React from 'react'
 

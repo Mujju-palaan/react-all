@@ -7,7 +7,7 @@ const NoPageSelected = (props :  Props) => {
   return (
     <div className="w-full justify-center text-center">
       <Image
-        src="/Notepad_icon.svg.png"
+        src="/5)Notepad_icon.png"
         width={100}
         height={100}
         alt="No Page Selected"

@@ -2,7 +2,7 @@ import React from "react";
 import {
   calculateInvestmentResults,
   formatter,
-} from "@/components/investment-calculator/investment";
+} from "./investment";
 
 const TableData = ({ userInput }: any) => {
   const resultData = calculateInvestmentResults(userInput);
