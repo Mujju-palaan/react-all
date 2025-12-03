@@ -1,12 +1,9 @@
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  dueDate: string;
-};
+import type { Project } from "@/app/(pages)/CreateNewProject/page";
 
 type Props = {
   handleAddProjectButton: () => void;
+  handleSelectProject: (id: number) => void;
+  selectedProjectID: number | null | undefined;
   projects: Project[]; // <-- ADD THIS
 };
 
@@ -29,13 +26,26 @@ const SideBar = (props: Props) => {
           <p className="text-sm text-gray-400">No projects yet</p>
         )}
 
-        {props.projects.map((project: Project) => (
-          <li className="m-2" key={project.id}>
-            <button className="w-full bg-stone-900 rounded text-[12px] py-1 px-2 text-amber-50 cursor-pointer">
-              {project.title}
-            </button>
-          </li>
-        ))}
+        {props.projects.map((project: Project) => {
+          let cssClasses = "w-full text-left px-2 py-1 rounded-sm my-1 text-stone-400 cursor-pointer"
+
+          if(project.id === props.selectedProjectID){
+            cssClasses += ' bg-stone-800 text-stone-200'
+          }else{
+            cssClasses += ' text-stone-400'
+          }
+
+          return (
+            <li className="m-2" key={project.id}>
+              <button
+                onClick={() => props.handleSelectProject(project.id)}
+                className={cssClasses}
+              >
+                {project.title}
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
