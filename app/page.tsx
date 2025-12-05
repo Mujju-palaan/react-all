@@ -9,8 +9,8 @@ export default function Home() {
         <li><Link href={`/tic-tac-toe`}>Tic-Tac-Toe Game</Link></li>
         <li><Link href={`/investment-calculator`}>Investment Calculator</Link></li>
         <li><Link href={`/countdown`}>Countdown</Link></li>
-        <li><Link href={`/CreateNewProject`}>Create New Project Screen (props, lifting the States)</Link></li>
-        <li><Link href={`/countdown`}>New</Link></li>
+        <li><Link href={`/CreateNewProject`}>Create New Project Screen (prop drilling, lifting the States)</Link></li>
+        <li><Link href={`/context`}>useContext</Link></li>
       </ul>
     </div>
   );

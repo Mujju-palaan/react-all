@@ -127,3 +127,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .button {
+    @apply bg-card text-card-foreground shadow-md rounded-lg p-6;
+  }
+}
