@@ -11,6 +11,9 @@ export default function Home() {
         <li><Link href={`/countdown`}>Countdown</Link></li>
         <li><Link href={`/CreateNewProject`}>Create New Project Screen (prop drilling, lifting the States)</Link></li>
         <li><Link href={`/context`}>useContext</Link></li>
+        <li><Link href={`/bgChanger`}>bgChanger</Link></li>
+        <li><Link href={`/PasswordGenerator`}>PasswordGenerator</Link></li>
+
       </ul>
     </div>
   );
