@@ -13,6 +13,7 @@ export default function Home() {
         <li><Link href={`/context`}>useContext</Link></li>
         <li><Link href={`/bgChanger`}>bgChanger</Link></li>
         <li><Link href={`/PasswordGenerator`}>PasswordGenerator</Link></li>
+        <li><Link href={`/CurrencyConverter`}>CurrencyConverter</Link></li>
 
       </ul>
     </div>
