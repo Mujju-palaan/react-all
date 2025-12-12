@@ -5,13 +5,12 @@ import NoPageSelected from "@/components/5)CreateNewProject/NoPageSelected";
 import ProjectForm from "@/components/5)CreateNewProject/ProjectForm";
 import SelectedProject from "@/components/5)CreateNewProject/SelectedProject";
 
-export type ProjectData = {
+
+export type Project =  {
+  id: number;
   title: string;
   description: string;
   dueDate: string;
-};
-export type Project = ProjectData & {
-  id: number | string;
 };
 export type Tasktype = {
   taskId: string | number;
@@ -57,11 +56,11 @@ const Page = () => {
     }));
   }
 
-  function handleSaveProject(projectData: ProjectData) {
+function handleSaveProject(projectData: Omit<Project, "id">) {
   setProjectState((prev) => {
-    const newProject: Project = {
-      id: Math.random(),
+    const newProject = {
       ...projectData,
+      id: Math.random(),
     };
 
     return {

@@ -4,13 +4,16 @@ import React, { useState, useRef } from "react";
 
 const Header1 = () => {
   const nameRef = useRef<HTMLInputElement>(null);
-  const [name, setName] = useState(null);
+  const [name, setName] = useState<string | null>(null);
 //   const [clicked, setClicked] = useState(false);
 
-  const handelOnClick = () => { 
-    setName(nameRef.current.value); 
-    nameRef.current.value = ""; 
-};
+  const handelOnClick = () => {
+    const value = nameRef.current?.value ?? null;
+    setName(value);
+    if (nameRef.current) {
+      nameRef.current.value = "";
+    }
+  };
 
   return (
     <div className="p-16 text-amber-50 justify-self-center text-center">

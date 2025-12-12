@@ -3,9 +3,9 @@ import Task from "./Task";
 
 type Props = {
   handelAddTask: (text: string) => void;
-  handelDeleteTask: () => void;
+  handelDeleteTask: (id?: string | number) => void;
   handelDeleteProject: () => void;
-  project: Project ;   // <-- important fix
+  project?: Project;
   tasks: Tasktype[];
 };
 
@@ -16,6 +16,16 @@ const SelectedProject = ({
   handelDeleteTask,
   tasks,
 }: Props) => {
+
+   // ⛔ Add this guard before accessing project
+  if (!project) {
+    return (
+      <div className="w-[35rem] mt-16 ml-6 text-stone-500 text-xl">
+        No project selected.
+      </div>
+    );
+  }
+
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",

@@ -2,19 +2,21 @@
 import { useRef, useState } from "react";
 import Input from "./Input";
 import Modal from "./Modal";
-
-type ProjectData = {
+export type Project = {
+  id: number | string;
   title: string;
   description: string;
   dueDate: string;
 };
 
+
 type Props = {
   handelCancelButton: () => void;
-  handelSavedData: (data: ProjectData) => void;
+handelSavedData: (data: Omit<Project, "id">) => void;
+  Project?: Project;
 };
 
-const ProjectForm = (props: Props) => {
+const ProjectForm = ({handelSavedData, handelCancelButton}: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const titelRef = useRef<HTMLInputElement>(null);
@@ -31,7 +33,8 @@ const ProjectForm = (props: Props) => {
     return;
     }
 
-    props.handelSavedData({
+    handelSavedData({
+      // id: Date.now(),
       title: enteredTitle || "",
       description: enteredDescription || "",
       dueDate: enteredDueDate || "",
@@ -47,7 +50,7 @@ const ProjectForm = (props: Props) => {
     <Modal open={isModalOpen} onOpenChange={setIsModalOpen} />
     <div className="w-1/3 p-10 text-stone-600">
       <div className="flex gap-4 p-4 justify-end">
-        <button onClick={props.handelCancelButton} className="cursor-pointer">
+        <button onClick={handelCancelButton} className="cursor-pointer">
           Cancel
         </button>
         <button

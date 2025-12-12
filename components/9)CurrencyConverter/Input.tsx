@@ -8,6 +8,8 @@ type Props = {
   onCurrencyChange: (value: string) => void;
   selectCurrency: string;
   currencyOptions: CurrencyOptionType[];
+  amountDisable?: boolean; 
+  currencyDisable?: boolean; 
 };
 const InputCurrency = ({
   title,
