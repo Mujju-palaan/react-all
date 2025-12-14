@@ -1,4 +1,4 @@
-import type { Project } from "@/app/(pages)/CreateNewProject/page";
+import type { Project } from "@/app/(practice)/CreateNewProject/page";
 
 type Props = {
   handleAddProjectButton: () => void;

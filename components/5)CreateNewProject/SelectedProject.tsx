@@ -1,4 +1,4 @@
-import type { Project, Tasktype } from "@/app/(pages)/CreateNewProject/page";
+import type { Project, Tasktype } from "@/app/(practice)/CreateNewProject/page";
 import Task from "./Task";
 
 type Props = {

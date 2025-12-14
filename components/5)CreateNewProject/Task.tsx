@@ -1,6 +1,6 @@
 import React from "react";
 import NewTask from "./NewTask";
-import type { Tasktype } from "@/app/(pages)/CreateNewProject/page";
+import type { Tasktype } from "@/app/(practice)/CreateNewProject/page";
 
 type Props = {
   tasks: Tasktype[];
