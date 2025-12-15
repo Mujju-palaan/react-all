@@ -14,7 +14,7 @@ export default function Practice() {
         <li><Link href={`/bgChanger`}>bgChanger</Link></li>
         <li><Link href={`/PasswordGenerator`}>PasswordGenerator</Link></li>
         <li><Link href={`/CurrencyConverter`}>CurrencyConverter</Link></li>
-        <li><Link href={`/CurrencyConverter`}>CurrencyConverter</Link></li>
+        <li><Link href={`/Todos`}>Todos</Link></li>
 
       </ul>
       
