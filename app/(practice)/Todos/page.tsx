@@ -2,7 +2,7 @@
 import TodoForm from "@/components/10)Todo/TodoForm";
 import { TodoProvider } from "@/app/useContexts/Todo";
 import type { TodoType } from "@/app/useContexts/Todo";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoItem from "@/components/10)Todo/TodoItem";
 
 const Todos = () => {
@@ -31,6 +31,19 @@ const Todos = () => {
       )
     );
   };
+
+  useEffect(() => {
+    const todosData = localStorage.getItem("todos")
+    const todos = todosData ? JSON.parse(todosData) : []
+
+    if (todos && todos.length > 0) {
+      setTodos(todos)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
 
   return (
     <TodoProvider
