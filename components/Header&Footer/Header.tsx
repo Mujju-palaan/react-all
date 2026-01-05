@@ -5,7 +5,7 @@ import NavLink from './NavLink';
 export default function Header() {
     // constants/navigation.ts
 const NAV_LINKS = [
-  { label: 'Home', href: '/' },
+  { label: 'Redux-project', href: '/RTK-project' },
   { label: 'About', href: '/About' },
   { label: 'Contact', href: '/Contact' },
   { label: 'Practice', href: '/Practice' },
