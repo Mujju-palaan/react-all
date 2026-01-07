@@ -9,7 +9,7 @@ const Sidebar = () => {
   ];
   return (
     <div className="flex flex-col gap-4 ">
-      <section className="bg-stone-800 rounded text-amber-50 p-4 mx-4">
+      <section className="bg-stone-800 rounded text-amber-50 p-4 m-4">
         <h2>Frontend Mentor</h2>
         <p className="text-[12px]">Feedback Board</p>
       </section>

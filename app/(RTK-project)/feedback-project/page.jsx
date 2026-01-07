@@ -4,7 +4,7 @@ import Main from "../../../components/RTK-project/feedback-comp/main";
 
 const page = () => {
   return (
-    <div className="grid gap-6 m-4 sm:grid-cols-12 text-center bg-blue-50">
+    <div className="screen-h grid gap-6 m-4 sm:grid-cols-12 text-center bg-blue-50">
       <div className="sm:col-span-3">
         <Sidebar />
       </div>

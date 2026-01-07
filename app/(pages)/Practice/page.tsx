@@ -15,7 +15,7 @@ export default function Practice() {
         <li><Link href={`/PasswordGenerator`}>PasswordGenerator</Link></li>
         <li><Link href={`/CurrencyConverter`}>CurrencyConverter</Link></li>
         <li><Link href={`/Todos`}>Todos (context)</Link></li>
-        <li><Link href={`/Todos-RTK`}>Todos (Redux Tool kit)</Link></li>
+        <li><Link href={`/RTK-project`}>Todos (Redux Tool kit)</Link></li>
 
       </ul>
       
