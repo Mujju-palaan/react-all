@@ -4,37 +4,70 @@ const initialState = {
   feedbacks: [
     {
       id: 1,
-      likes: 1,
       title: "Title",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-      commemnts: 0,
-      category: 'UI'
+      category: "UI",
+      status: "status",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+      likes: 0,
+      comments: 0,
     },
   ],
+  count: 0,
+  selectedCategory: "All",
+  sortBy: "Most Upvoted",
 };
 
 export const feedbackSlice = createSlice({
-    name:'Feedback',
-    initialState,
-    reducers:{
-        addFeedback: (state, action) => {
-            const feedback = {
-                id: nanoid(),
-                likes: 1,
-                title: action.payload.title,
-                text: action.payload.text,
-                commemnts: action.payload.commemnts,
-                category: action.payload.category
-            }
-            state.feedbacks.push(feedback)
-        },
-        removeFeesback: (state, action) => {
-            state.feedbacks = state.feedbacks.filter((feedback) => feedback.id != action.payload)
-        }
-    }
-  })
+  name: "Feedback",
+  initialState,
+  reducers: {
+    addFeedback: (state, action) => {
+      // console.log("Payload received in reducer:", action.payload);
 
+      const feedback = {
+        id: nanoid(),
+        title: action.payload.title,
+        category: action.payload.category,
+        status: action.payload.status,
+        description: action.payload.description,
+        likes: 0,
+        comments: 0,
+      };
+      state.feedbacks.unshift(feedback);
+      // console.log("Updated Redux state:", state);
+    },
+    removeFeedback: (state, action) => {
+      state.feedbacks = state.feedbacks.filter(
+        (feedback) => feedback.id != action.payload
+      );
+    },
+    feedback_like_count: (state, action) => {
+      const feedback = state.feedbacks.find(
+        (feedback) => feedback.id === action.payload
+      );
+      if (feedback) {
+        feedback.likes += 1;
+      }
+    },
+    setCategorFilter: (state, action) => {
+      // console.log("Payload received in reducer:", action.payload);
+      state.selectedCategory = action.payload;
+      // console.log("Updated Redux state:", state);
+    },
+    setSortBy: (state, action) => {
+      console.log("Payload received in reducer:", action.payload);
+      state.sortBy = action.payload;
+      console.log("Updated Redux state:", state);
+    },
+  },
+});
 
-export const {addFeedback} = feedbackSlice.actions
+export const {
+  addFeedback,
+  removeFeedback,
+  feedback_like_count,
+  setCategorFilter,
+  setSortBy,
+} = feedbackSlice.actions;
 
-export default feedbackSlice.reducer
+export default feedbackSlice.reducer;

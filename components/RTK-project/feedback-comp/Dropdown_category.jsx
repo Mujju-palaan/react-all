@@ -13,15 +13,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function Dropdown_category() {
+export function Dropdown_category({category, setCategory}) {
   const categorys = ["All", "UI", "UX", "Enhancement", "Bug", "Feature"];
-  const [category, setCategory] = React.useState('Category')
+  // const [category, setCategory] = React.useState('Category')
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="w-40 text-left justify-between">
         <Button variant="outline" className="text-left text-stone-600 font-normal">
-          {true ?  category : 'Category'} <span className="mb-1 text-stone-600">⌄</span>
+          {category || 'Category'} <span className="mb-1 text-stone-600">⌄</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
