@@ -4,7 +4,7 @@ import feedbackReducer from "./slice/feedback/feedbackSlice";
 
 const store = configureStore({
   reducer: {
-    todo: todoReducer,
+    todos: todoReducer,
     feedbacks: feedbackReducer,
   },
 });

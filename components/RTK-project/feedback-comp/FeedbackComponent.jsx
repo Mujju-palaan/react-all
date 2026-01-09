@@ -5,6 +5,7 @@ import {
   removeFeedback,
   feedback_like_count,
 } from "../../../app/slice/feedback/feedbackSlice";
+import Link from "next/link";
 
 const FeedbackComponent = () => {
   const feedbacks = useSelector((state) => state.feedbacks.feedbacks);
@@ -47,6 +48,7 @@ const FeedbackComponent = () => {
   return (
     <>
       {sortedFeedbacks.map((feedback) => (
+        
         <div
           key={feedback.id}
           className="shadow-2xl rounded m-4 p-4 bg-white flex gap-4"
@@ -60,12 +62,12 @@ const FeedbackComponent = () => {
             </button>
           </div>
 
+          {/* ----------------- */}
+          <Link key={feedback.id} href={`/`}>
           <div className="flex flex-col text-left w-full">
             <div className="flex justify-between">
               <span className="font-semibold text-sm">{feedback.title}</span>
-              <span className="flex gap-1 text-sm cursor-pointer">
-                <TiMessages /> 0
-              </span>
+              
             </div>
 
             <p className="text-stone-500 text-xs">{feedback.description}</p>
@@ -82,7 +84,10 @@ const FeedbackComponent = () => {
                 </button>
               </div>
             </div>
+            
           </div>
+          </Link>
+          {/* ------------------ */}
         </div>
       ))}
     </>

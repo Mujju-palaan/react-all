@@ -4,6 +4,7 @@ import FeedbackComponent from "./FeedbackComponent";
 import { NewFeedBackModal } from "./NewFeedback-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { setSortBy } from "../../../app/slice/feedback/feedbackSlice";
+import Link from "next/link";
 
 const Main = () => {
   const dispatch = useDispatch();

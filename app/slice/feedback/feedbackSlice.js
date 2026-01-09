@@ -15,6 +15,7 @@ const initialState = {
   count: 0,
   selectedCategory: "All",
   sortBy: "Most Upvoted",
+  feedbackId: 1
 };
 
 export const feedbackSlice = createSlice({
@@ -59,6 +60,9 @@ export const feedbackSlice = createSlice({
       state.sortBy = action.payload;
       console.log("Updated Redux state:", state);
     },
+    getFeedbackId: (state, action) => {
+      state.feedbackId = action.payload
+    }
   },
 });
 
