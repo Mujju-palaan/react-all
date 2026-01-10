@@ -1,4 +1,4 @@
-'use client'
+```
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { AddEmployee } from "../../../app/slice/employee/employeeSlice";
+import { AddEmployee,removeEmployee } from "../../../app/slice/employee/employeeSlice";
 
 export function NewEmployeeModal() {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ export function NewEmployeeModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" className="btn text-[12px]">
-          + Add New Record
+          Edit
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -107,3 +107,5 @@ export function NewEmployeeModal() {
 }
 
 export default NewEmployeeModal;
+
+```

@@ -1,30 +1,43 @@
-'use client'
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AddEmployee } from "../../../app/slice/employee/employeeSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateEmployee } from "../../../app/slice/employee/employeeSlice";
 
-export function NewEmployeeModal() {
+export function UpdateEmployeeModal({ id, open, setOpen }) {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const employee = useSelector((state) =>
+    state.employees.employees.find((emp) => emp.id === id)
+  );
+
+  // const [open, setOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("");
 
+  // Reset form when modal opens with employee data
+  useEffect(() => {
+    if (!open || !employee) return;
+    if (open && employee) {
+      setName(employee.name);
+      setEmail(employee.email);
+      setPhone(employee.phone);
+      setPosition(employee.position);
+    }
+  }, [open, employee]);
+
   const emp = {
+    id : id,
     name,
     email,
     phone,
@@ -33,23 +46,16 @@ export function NewEmployeeModal() {
   const handelSubmit = (e) => {
     e.preventDefault();
     if (!name || !email || !phone || !position) return;
-    dispatch(AddEmployee(emp))
-    setName('')
-    setEmail('')
-    setPhone('')
-    setPosition('')
-    setOpen(false)
+    dispatch(updateEmployee(emp));
+    setOpen(false);
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" className="btn text-[12px]">
-          + Add New Record
-        </Button>
-      </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="font-bold">Add New Employee</DialogTitle>
+          <DialogTitle className="font-bold">
+            Update Employee Details
+          </DialogTitle>
         </DialogHeader>
         <form onSubmit={handelSubmit}>
           <div className="grid gap-4">
@@ -57,7 +63,7 @@ export function NewEmployeeModal() {
               <Label htmlFor="name">Name</Label>
               <Input
                 id="name"
-                className="text-stone-500"
+                className="text-stone-800"
                 placeholder="Enter employee name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -67,7 +73,7 @@ export function NewEmployeeModal() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                className="text-stone-500"
+                className="text-stone-800"
                 placeholder="Enter employee email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -77,7 +83,7 @@ export function NewEmployeeModal() {
               <Label htmlFor="phone">Phone no.</Label>
               <Input
                 id="phone"
-                className="text-stone-500"
+                className="text-stone-800"
                 placeholder="Enter employee phone no."
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -87,14 +93,14 @@ export function NewEmployeeModal() {
               <Label htmlFor="position">Position</Label>
               <Input
                 id="position"
-                className="text-stone-500"
+                className="text-stone-800"
                 placeholder="Enter employee position"
                 value={position}
                 onChange={(e) => setPosition(e.target.value)}
               />
             </div>
           </div>
-          <DialogFooter className='pt-2'>
+          <DialogFooter className="pt-2">
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
@@ -106,4 +112,4 @@ export function NewEmployeeModal() {
   );
 }
 
-export default NewEmployeeModal;
+export default UpdateEmployeeModal;

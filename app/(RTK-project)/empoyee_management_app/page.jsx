@@ -3,19 +3,19 @@ import { Search } from "lucide-react";
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeEmployee } from "../../../app/slice/employee/employeeSlice";
+import { removeEmployee, updateEmployee } from "../../../app/slice/employee/employeeSlice";
 import NewEmployeeModal from "../../../components/RTK-project/employee_management_comp/NewEmployeeModal";
+import UpdateEmployeeModal from "../../../components/RTK-project/employee_management_comp/UpdateEmployeModal";
 
 const Employee_Management_App = () => {
-    const dispatch = useDispatch()
-    const employees = useSelector((state)=>state.employees.employees)
-    console.log(employees);
-    
-  const emp = [
-    {id: 1, name: "Mujju",email: "dev@mujju.com",phone: "7269126981",position: "dev"},
-    {id: 2, name: "Mujju",email: "dev@mujju.com",phone: "7269126981",position: "dev"},
-  ];
   const [search, setSearch] = useState("");
+  const [id, setId] = useState('')
+  const [open, setOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const employees = useSelector((state) => state.employees.employees);
+  // console.log(employees);
+
   return (
     <div className="min-h-screen justify-self-center ">
       <section className="rounded shadow-md w-150 m-4 p-4 bg-stone-100">
@@ -28,7 +28,7 @@ const Employee_Management_App = () => {
       {/* -----------search bar--------- */}
       <section className="flex gap-4 justify-between rounded shadow-md w-150 m-4 p-4 bg-stone-100 ">
         <div className="flex">
-            <Search className="mt-1.5" />
+          <Search className="mt-1.5" />
           <input
             onChange={(e) => setSearch(e.target.value)}
             type="search"
@@ -70,21 +70,30 @@ const Employee_Management_App = () => {
             <li>{e.phone}</li>
             <li>{e.position}</li>
             <li className="flex gap-2">
-              <button 
-              onClick={()=>{}}
-              className="rounded px-2 py-1 bg-blue-600 text-white cursor-pointer">
-                Edit
+              <button
+                onClick={() => {
+                  setId(e.id)
+                  console.log('empId:', id);
+                  
+                  setOpen(true);
+                }}
+                className="rounded px-2 py-1 bg-blue-600 text-white cursor-pointer"
+              >
+                Edit 
               </button>
-              <button 
-              onClick={()=>{dispatch(removeEmployee(e.id))}}
-              className="rounded px-2 py-1 bg-red-600 text-white cursor-pointer">
+              <UpdateEmployeeModal open={open} setOpen={setOpen} id={id}/>
+              <button
+                onClick={() => {
+                  dispatch(removeEmployee(e.id));
+                }}
+                className="rounded px-2 py-1 bg-red-600 text-white cursor-pointer"
+              >
                 Delete
               </button>
             </li>
           </ol>
         ))}
       </div>
-      
     </div>
   );
 };

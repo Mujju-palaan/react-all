@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   employees: [
@@ -16,7 +16,10 @@ export const employeeSlice = createSlice({
   initialState,
   reducers: {
     AddEmployee: (state, action) => {
-        const id = state.employees.length + 1;
+      const id =
+        state.employees.length > 0
+          ? Math.max(...state.employees.map((e) => e.id)) + 1
+          : 1;
       const employee = {
         id: id,
         name: action.payload.name,
@@ -24,15 +27,22 @@ export const employeeSlice = createSlice({
         phone: action.payload.phone,
         position: action.payload.position,
       };
-      state.employees.push(employee)
+      state.employees.push(employee);
     },
-    removeEmployee: (state, action)=>{
-        state.employees = state.employees.filter((employee)=>employee.id != action.payload)
-    }
+    removeEmployee: (state, action) => {
+      state.employees = state.employees.filter(
+        (employee) => employee.id != action.payload
+      );
+    },
+    updateEmployee: (state, action) => {
+      state.employees = state.employees.map((emp) =>
+        emp.id === action.payload.id ? action.payload : emp
+      );
+    },
   },
 });
 
+export const { AddEmployee, removeEmployee, updateEmployee } =
+  employeeSlice.actions;
 
-export const {AddEmployee, removeEmployee} = employeeSlice.actions
-
-export default employeeSlice.reducer
+export default employeeSlice.reducer;
