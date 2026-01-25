@@ -16,7 +16,7 @@ const page = () => {
           <Link href={`/empoyee_management_app`}>Employee Management App</Link>
         </li>
         <li>
-          <Link href={`/`}>4</Link>
+          <Link href={`/todoflow`}>Todo Flow (Progress bar)</Link>
         </li>
         <li>
           <Link href={`/`}>5</Link>
