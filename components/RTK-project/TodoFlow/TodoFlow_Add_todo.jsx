@@ -4,14 +4,14 @@ import { GoClock } from "react-icons/go";
 import { CiMenuFries } from "react-icons/ci";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
-const TodoFlow_Add_todo = () => {
+const TodoFlow_Add_todo = ({onClick, active, all, completed }) => {
   const [colour, setColour] = React.useState("All");
   return (
     <div className="md:w-1/3 w-full">
       <div className=" p-4 border shadow-2xl rounded-xl text-[12px] ">
         <div className="flex justify-between">
           <span>
-            <button className="bg-stone-800 text-white rounded p-2 cursor-pointer">
+            <button onClick={onClick} className="bg-stone-800 text-white rounded p-2 cursor-pointer">
               + Add Todo
             </button>
           </span>
@@ -28,7 +28,7 @@ const TodoFlow_Add_todo = () => {
             <span className="m-[2px]">
               <CiMenuFries />
             </span>
-            <span>All {`1`}</span>
+            <span>All {all}</span>
           </button>
           <button
             onClick={() => setColour("Active")}
@@ -37,7 +37,7 @@ const TodoFlow_Add_todo = () => {
             <span className="m-[2px]">
               <GoClock />
             </span>
-            <span>Active {`1`}</span>
+            <span>Active {active}</span>
           </button>
           <button
             onClick={() => setColour("Completed")}
@@ -47,7 +47,7 @@ const TodoFlow_Add_todo = () => {
             <span className="m-[2px] ">
               <IoMdCheckmarkCircleOutline />
             </span>
-            <span>Completed {`0`}</span>
+            <span>Completed {completed}</span>
           </button>
         </div>
       </div>
