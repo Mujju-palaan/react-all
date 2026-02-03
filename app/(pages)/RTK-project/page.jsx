@@ -19,7 +19,7 @@ const page = () => {
           <Link href={`/todoflow`}>Todo Flow (Progress bar)</Link>
         </li>
         <li>
-          <Link href={`/`}>5</Link>
+          <Link href={`/ecomm_cart`}>ecomm_cart</Link>
         </li>
         <li>
           <Link href={`/`}>6</Link>
