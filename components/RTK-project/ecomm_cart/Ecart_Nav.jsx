@@ -1,10 +1,10 @@
-import React from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import EcartDrawer from "./EcartDrawer";
 
-const Ecart_Nav = ({ count = 4 }) => {
+const Ecart_Nav = () => {
+
   return (
-    <div className="flex justify-around p-4 shadow-xl">
-      <div className="text-2xl font-bold cursor-pointer">
+    <div className="flex gap-2 justify-around p-4 shadow-xl">
+      <div className="md:text-2xl font-bold cursor-pointer">
         <h1>Mujju Mart</h1>
       </div>
       <div className="cursor-pointer">
@@ -13,25 +13,11 @@ const Ecart_Nav = ({ count = 4 }) => {
           name=""
           id=""
           placeholder="Enter your product"
-          className="w-80 p-2 border rounded-xl bg-stone-300"
+          className="md:w-80 md:p-2 p-1 border rounded-xl bg-stone-300"
         />
       </div>
-      <div className="relative text-2xl cursor-pointer">
-        <AiOutlineShoppingCart />
-        {/* Cart Count Badge */}
-        <span
-          className="
-        absolute -top-2 -right-2
-        flex items-center justify-center
-        h-4 w-4
-        rounded-full
-        bg-red-600
-        text-xs font-bold text-white
-      "
-        >
-          {count}
-        </span>
-      </div>
+
+      <EcartDrawer />
     </div>
   );
 };

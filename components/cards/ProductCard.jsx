@@ -1,27 +1,39 @@
 import Image from "next/image";
-import React from "react";
 
-const ProductCard = () => {
+const ProductCard = ({ image, title, description, price, handleCart }) => {
   return (
-    <div className="lg:w-1/4 w-1/2 shadow border rounded items-center p-4">
-      <div className="md:h-50 h-30">
-        {/* <Image src={"/public/invest/Investing.webp"} alt="image" fill /> */}
-      </div>
-      <div>
-        <h1 className="text-xl font-semibold">Premium HeadPhones</h1>
-        <p className="text-xs text-stone-500 ">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus illo
-          voluptates nam architecto laboriosam ea recusandae laudantium
-          blanditiis, accusamus fugit voluptatem molestiae, quod officia
-          excepturi sapiente magni eligendi quisquam maiores?
-        </p>
-        {/* <p>rating</p> */}
-      </div>
-      <div className="flex justify-between">
-        <span>$299.00</span>
-        <span className="bg-stone-400 px-1 rounded ">
-          <button className="cursor-pointer">Add to cart</button>
-        </span>
+    <div className="w-full lg:w-1/4 p-2">
+      <div className="shadow border rounded p-4 h-full flex flex-col m-2">
+        {/* Image */}
+        <div className="relative h-40 w-full">
+          {image && (
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover rounded"
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="py-2 flex-1">
+          <h1 className="text-lg font-semibold">{title}</h1>
+          <p className="text-xs text-stone-500 line-clamp-2">{description}</p>
+        </div>
+
+        {/* Footer */}
+        <div className="flex justify-between items-center mt-2">
+          <span className="font-semibold">{`$${price}`}</span>
+          <button
+            onClick={handleCart}
+            className="bg-stone-800 text-white text-xs px-2 py-1 rounded
+            hover:bg-stone-700 transition cursor-pointer"
+          >
+            Add to cart
+          </button>
+        </div>
       </div>
     </div>
   );
