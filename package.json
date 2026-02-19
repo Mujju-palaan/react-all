@@ -12,6 +12,8 @@
     "-": "^0.0.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@mantine/core": "^8.3.15",
+    "@mantine/hooks": "^8.3.15",
     "@mui/material": "^7.3.7",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
