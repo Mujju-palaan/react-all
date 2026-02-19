@@ -8,7 +8,8 @@ const page = () => {
     { title: "Employee Management App", link: "/empoyee_management_app" },
     { title: "Todo Flow (Progress bar)", link: "/todoflow" },
     { title: "Ecomm_cart", link: "/ecomm_cart" },
-    { title: "Redux-async-Thunk", link: "/redux-async-Thunk" },
+    { title: "Redux-async-Thunk (Basic to fetch data)", link: "/redux-async-Thunk" },
+    { title: "Redux-async-Thunk (get,post,put,delete)", link: "/redux-async-Thunk-all" },
   ];
 
   return (

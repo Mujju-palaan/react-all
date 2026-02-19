@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchUsers } from "../../slice/Async-thunk/asyncThunkSlice";
+import { FetchUsers } from "../../slice/Async-thunk/FetchUsersDataSlice";
 
 const Page = () => {
   const { isLoading, data, isError } = useSelector((state) => state.FetchUser);

@@ -4,7 +4,7 @@ import feedbackReducer from "./slice/feedback/feedbackSlice";
 import employeeReducer from './slice/employee/employeeSlice'
 import todoFlowReducer from './slice/todoFlow/todoFlowSlice'
 import EcommCartReducer from './slice/Ecomm_cart/EcartSlice'
-import FetchUsersDataSlice from './slice/Async-thunk/asyncThunkSlice'
+import FetchUsersDataSlice from './slice/Async-thunk/FetchUsersDataSlice'
 
 const store = configureStore({
   reducer: {
