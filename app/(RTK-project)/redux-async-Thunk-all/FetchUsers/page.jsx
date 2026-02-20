@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   FetchUsers,
   DeleteUser,
-  UpdateUser,
 } from "../../../slice/Async-thunk-all-methods/UsersSlice";
 import { useRouter } from "next/navigation";
 
@@ -22,9 +21,17 @@ const Page = () => {
   }
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center">
-        Fetching User ({data?.length || 0})
-      </h1>
+      <div className="flex flex-col items-center justify-center gap-4">
+        <h1 className="text-4xl font-bold text-center">
+          Fetching User ({data?.length || 0})
+        </h1>
+        <button
+          onClick={() => router.push("/redux-async-Thunk-all/createUser")}
+          className="bg-green-600 text-white px-4 py-2 rounded-md cursor-pointer"
+        >
+          Create User
+        </button>
+      </div>
 
       <div className="grid grid-cols-6 gap-4 m-12">
         <h1 className="text-2xl font-bold text-center">User Name</h1>

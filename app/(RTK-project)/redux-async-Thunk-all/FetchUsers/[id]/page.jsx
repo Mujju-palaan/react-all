@@ -98,7 +98,7 @@ const Page = () => {
             href="/redux-async-Thunk-all/FetchUsers"
             className="bg-red-500 text-white px-4 py-2 rounded-md cursor-pointer ml-4"
           >
-            Cancel
+            Close
           </Link>
         </div>
       </div>
