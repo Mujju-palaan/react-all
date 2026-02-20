@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   FetchUsers,
   DeleteUser,
+  UpdateUser,
 } from "../../../slice/Async-thunk-all-methods/UsersSlice";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const { loading, data } = useSelector((state) => state.Users);
 
   useEffect(() => {
@@ -45,16 +47,18 @@ const Page = () => {
 
             <div className="flex gap-4 justify-center">
               <button
+                onClick={() =>
+                  router.push(`/redux-async-Thunk-all/FetchUsers/${user.id}`)
+                }
+                className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
+              >
+                View
+              </button>
+              <button
                 onClick={() => dispatch(DeleteUser(user.id))}
                 className="bg-red-500 text-white px-4 py-2 rounded-md cursor-pointer"
               >
                 Delete
-              </button>
-              <button
-                onClick={() => dispatch(EditUser(user.id))}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
-              >
-                Edit
               </button>
             </div>
           </div>
