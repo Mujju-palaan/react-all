@@ -1,25 +1,27 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CreateUser } from "../../../app/slice/Async-thunk-all-methods/UsersSlice";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const CreateUserForm = () => {
-    const router = useRouter();
-    const dispatch = useDispatch();
-    const [data, setData] = useState({});
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [data, setData] = useState({});
 
-    const getUserData = (e) => {
-        setData({...data, [e.target.name]: e.target.value})
-    }
+  const getUserData = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const handelSubmit = (e) => {
-        e.preventDefault();
-        console.log(data);
-        dispatch(CreateUser({data}))
-        router.push("/redux-async-Thunk-all/FetchUsers")
-    }
-
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    console.log(data);
+    dispatch(CreateUser(data));
+    router.push("/redux-async-Thunk-all/FetchUsers");
+  };
 
   return (
     <div className="w-full max-w-md mx-auto bg-white p-8 rounded-md shadow-2xl">
@@ -32,6 +34,17 @@ const CreateUserForm = () => {
           type="text"
           placeholder="name"
           name="name"
+          className="border-2 border-gray-300 rounded-md p-2 mb-4 w-full"
+          onChange={getUserData}
+          required
+        />
+        {/* //Date */}
+        <label htmlFor="dob" className="block mb-2 font-bold">
+          DOB
+        </label>
+        <input
+          type="date"
+          name="dob"
           className="border-2 border-gray-300 rounded-md p-2 mb-4 w-full"
           onChange={getUserData}
           required

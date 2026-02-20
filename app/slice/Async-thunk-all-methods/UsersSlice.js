@@ -11,7 +11,8 @@ export const FetchUsers = createAsyncThunk("users/all", async () => {
 });
 
 //Async thunk for Creating user (POST)
-export const CreateUser = createAsyncThunk("users/create", async (data) => {
+export const CreateUser = createAsyncThunk("users/create", 
+  async (data , { rejectWithValue }) => {
   console.log("data:", data);
   try {
     const response = await fetch(API,
@@ -28,7 +29,7 @@ export const CreateUser = createAsyncThunk("users/create", async (data) => {
     }
     return await response.json();
   } catch (error) {
-    throw error;
+    return rejectWithValue(error | error.message)
   }
 });
 
@@ -67,6 +68,7 @@ const userSlice = createSlice({
       })
       .addCase(CreateUser.pending, (state) => {
         state.loading = true;
+        state.error = false
       })
       .addCase(CreateUser.fulfilled, (state, action) => {
         state.loading = false;

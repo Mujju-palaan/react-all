@@ -20,12 +20,14 @@ const Page = () => {
   }
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center">Fetching User ({data?.length || 0})</h1>
+      <h1 className="text-4xl font-bold text-center">
+        Fetching User ({data?.length || 0})
+      </h1>
 
       <div className="grid grid-cols-6 gap-4 m-12">
         <h1 className="text-2xl font-bold text-center">User Name</h1>
-        <h1 className="text-2xl font-bold text-center">Dob</h1>
         <h1 className="text-2xl font-bold text-center">User Email</h1>
+        <h1 className="text-2xl font-bold text-center">DOB</h1>
         <h1 className="text-2xl font-bold text-center">User Job</h1>
         <h1 className="text-2xl font-bold text-center">User Phone no.</h1>
       </div>
@@ -38,8 +40,9 @@ const Page = () => {
             <p>{user.name}</p>
             <p>{user.email}</p>
             <p>{user.dob}</p>
-            <p>{user.phone}</p>
             <p>{user.job}</p>
+            <p>{user.phone}</p>
+
             <div className="flex gap-4 justify-center">
               <button
                 onClick={() => dispatch(DeleteUser(user.id))}
