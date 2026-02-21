@@ -22,12 +22,23 @@ const ClientPage = () => {
   const user = data.find((u) => u.id === id);
 
   const [formData, setFormData] = useState({
-    name: user.name || "",
-        email: user.email || "",
-        dob: user.dob || "",
-        phone: user.phone || "",
-        job: user.job || "",
+    name: "",
+    email: "",
+    dob: "",
+    phone: "",
+    job: "",
   });
+
+  useEffect(() => {
+    if (!user) return;
+    setFormData({
+      name: user.name || "",
+      email: user.email || "",
+      dob: user.dob || "",
+      phone: user.phone || "",
+      job: user.job || "",
+    });
+  }, [user]);
 
 
   const dummydata = [
