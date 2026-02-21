@@ -10,7 +10,7 @@ const page = () => {
     { title: "Ecomm_cart", link: "/ecomm_cart" },
     { title: "Redux-async-Thunk (Basic to fetch data)", link: "/redux-async-Thunk" },
     { title: "Redux-async-thunk-all", link: "/redux-async-Thunk-all/createUser" },
-    { title: "Redux-async-thunk-all-shadcn", link: "/redux-async-thunk-all-shadcn/CreateForm" },
+    { title: "Redux-async-thunk-all-shadcn", link: "/redux-async-thunk-all-shadcn" },
   ];
 
   return (

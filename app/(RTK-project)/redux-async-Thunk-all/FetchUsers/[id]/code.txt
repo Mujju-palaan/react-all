@@ -8,37 +8,25 @@ import {
 } from "../../../../slice/Async-thunk-all-methods/UsersSlice";
 import Link from "next/link";
 
-const emptyForm = {
-  name: "",
-  email: "",
-  dob: "",
-  phone: "",
-  job: "",
-};
-
-const userToFormData = (user) => ({
-  name: user?.name || "",
-  email: user?.email || "",
-  dob: user?.dob || "",
-  phone: user?.phone || "",
-  job: user?.job || "",
-});
-
-const ClientPage = () => {
+const Page = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
 
   const { data } = useSelector((state) => state.Users);
-
   useEffect(() => {
     dispatch(FetchUsers());
   }, [dispatch]);
 
   const user = data.find((u) => u.id === id);
 
-  const [formData, setFormData] = useState(emptyForm);
-
+  const [formData, setFormData] = useState(() => ({
+    name: user?.name || "",
+    email: user?.email || "",
+    dob: user?.dob || "",
+    phone: user?.phone || "",
+    job: user?.job || "",
+  }));
 
   const dummydata = [
     { title: "Name", value: "name", type: "text" },
@@ -51,11 +39,6 @@ const ClientPage = () => {
   const handleSave = () => {
     dispatch(UpdateUser({ id, updatedData: formData }));
     setEdit(false);
-  };
-
-  const handleEdit = () => {
-    setFormData(userToFormData(user));
-    setEdit(true);
   };
 
   return (
@@ -99,12 +82,18 @@ const ClientPage = () => {
             </button>
           ) : (
             <button
-              onClick={handleEdit}
+              onClick={() => setEdit(!edit)}
               className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
             >
               Edit
             </button>
           )}
+          {/* <button
+            onClick={() => setEdit(!edit)}
+            className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
+          >
+            {edit ? "Save" : "Edit"}
+          </button> */}
           <Link
             href="/redux-async-Thunk-all/FetchUsers"
             className="bg-red-500 text-white px-4 py-2 rounded-md cursor-pointer ml-4"
@@ -117,4 +106,4 @@ const ClientPage = () => {
   );
 };
 
-export default ClientPage;
+export default Page;

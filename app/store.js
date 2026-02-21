@@ -6,6 +6,7 @@ import todoFlowReducer from './slice/todoFlow/todoFlowSlice'
 import EcommCartReducer from './slice/Ecomm_cart/EcartSlice'
 import FetchUsersDataSlice from './slice/Async-thunk/FetchUsersDataSlice'
 import userSlice from './slice/Async-thunk-all-methods/UsersSlice'
+import usernameSlice from './slice/Async-thunk-all-methods/UsernameSlice'
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     EcommCarts : EcommCartReducer,
     FetchUser: FetchUsersDataSlice,
     Users: userSlice,
+    username: usernameSlice,
   },
 });
 
