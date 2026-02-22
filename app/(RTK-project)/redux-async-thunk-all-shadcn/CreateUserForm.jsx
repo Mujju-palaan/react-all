@@ -21,23 +21,44 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { CreateUsername } from "../../slice/Async-thunk-all-methods/UsernameSlice";
 
 const CreateUserForm = () => {
-  const [user, setUser] = useState({})
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({});
 
-  const update = (e) =>{
-    setUser([e.target.value] = [e.target.name])
-  }
+  const getData = (e) => {
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleGenderChange = (value) => {
+    setUser((prev) => ({
+      ...prev,
+      gender: value,
+    }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // alert("FORM SUBMITTED"); // 👈 add this
+    console.log("data:", user);
+    dispatch(CreateUsername(user));
+  };
 
   return (
     <Dialog>
-      <form>
-        <DialogTrigger asChild>
-          <Button variant="outline" className="bg-blue-300 hover:bg-blue-500">
-            Create User
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-sm">
+      <DialogTrigger asChild>
+        <Button variant="outline" className="bg-blue-300 hover:bg-blue-500">
+          Create User
+        </Button>
+      </DialogTrigger>
+
+      <DialogContent className="sm:max-w-sm">
+        <form onSubmit={handleFormSubmit}>
           <DialogHeader>
             <DialogTitle className="font-bold text-2xl">
               Create New User
@@ -49,20 +70,38 @@ const CreateUserForm = () => {
           <FieldGroup>
             <Field>
               <Label htmlFor="name">Name</Label>
-              <Input id="name" name="name" placeholder="New User" />
+              <Input
+                id="name"
+                name="name"
+                placeholder="New User"
+                onChange={getData}
+                required
+              />
             </Field>
             <Field>
               <Label htmlFor="username">Username</Label>
-              <Input id="username" name="username" placeholder="@user" />
+              <Input
+                id="username"
+                name="username"
+                placeholder="@user"
+                onChange={getData}
+                required
+              />
             </Field>
             <Field>
               <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" placeholder="user@gmail.com" />
+              <Input
+                id="email"
+                name="email"
+                placeholder="user@gmail.com"
+                onChange={getData}
+                required
+              />
             </Field>
             <div className="flex gap-4">
               <Label htmlFor="gender">Gender</Label>
-              <Select>
-                <SelectTrigger className="w-[180px]">
+              <Select onValueChange={handleGenderChange}>
+                <SelectTrigger className="w-[180px]" id="gender">
                   <SelectValue placeholder="Gender" />
                 </SelectTrigger>
                 <SelectContent>
@@ -81,8 +120,8 @@ const CreateUserForm = () => {
             </DialogClose>
             <Button type="submit">Save changes</Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   );
 };

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import CreateUserForm from "./CreateUserForm";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteUsername, FetchUsername } from "../../slice/Async-thunk-all-methods/UsernameSlice";
+import { FetchUsername } from "../../slice/Async-thunk-all-methods/UsernameSlice";
 import { DataTable } from "./DataTable";
 
 const Page = () => {

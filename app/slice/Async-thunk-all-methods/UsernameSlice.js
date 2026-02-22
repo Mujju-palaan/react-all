@@ -29,10 +29,10 @@ export const DeleteUsername = createAsyncThunk(
 );
 
 //POST
+// POST
 export const CreateUsername = createAsyncThunk(
   "username/create",
-  async ({ user, rejectWithValue }) => {
-    console.log("new data:", data);
+  async (user, { rejectWithValue }) => {
     try {
       const response = await fetch(API, {
         method: "POST",
@@ -41,15 +41,20 @@ export const CreateUsername = createAsyncThunk(
         },
         body: JSON.stringify(user),
       });
+
       if (!response.ok) {
-        throw new Error("Failed to Create User");
+        const errorData = await response.json();
+        return rejectWithValue(errorData.message || "Failed to create user");
       }
-      console.log("updated data:", response.json());
-      return await response.json();
+
+      const data = await response.json();
+      console.log("created user:", data);
+
+      return data;
     } catch (error) {
-      return rejectWithValue(error.message | error);
+      return rejectWithValue(error.message || "Network error");
     }
-  },
+  }
 );
 
 const usernameSlice = createSlice({
