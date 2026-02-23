@@ -54,7 +54,30 @@ export const CreateUsername = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message || "Network error");
     }
-  }
+  },
+);
+
+//PUT
+export const UpdateUsername = createAsyncThunk(
+  "username/update",
+  async (user, { rejectWithValue }) => {
+    const res = await fetch(`${API}${user.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      return rejectWithValue(errorData.message || "Failed to update user");
+    }
+
+    try {
+      return await res.json();
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
 );
 
 const usernameSlice = createSlice({
@@ -98,6 +121,19 @@ const usernameSlice = createSlice({
         state.data.push(action.payload);
       })
       .addCase(CreateUsername.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = action.payload;
+      })
+      .addCase(UpdateUsername.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(UpdateUsername.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = state.data.map((user) =>
+          user.id === action.payload.id ? action.payload : user,
+        );
+      })
+      .addCase(UpdateUsername.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.payload;
       });

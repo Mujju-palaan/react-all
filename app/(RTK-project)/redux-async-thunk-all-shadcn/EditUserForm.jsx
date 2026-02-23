@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 import {
   Select,
   SelectContent,
@@ -20,93 +21,100 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { CreateUsername } from "../../slice/Async-thunk-all-methods/UsernameSlice";
+import { UpdateUsername } from "../../slice/Async-thunk-all-methods/UsernameSlice";
 import { istDateTime } from "../../../lib/formate";
 
-const CreateUserForm = () => {
+const EditUserForm = ({ userdata }) => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
   const [user, setUser] = useState({});
 
-  const getData = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  const fields = [
+    { label: "Name", key: "name" },
+    { label: "Username", key: "username" },
+    { label: "Email", key: "email" },
+  ];
+
+  useEffect(() => {
+    if (userdata) {
+      setUser(userdata);
+    }
+  }, [userdata]);
+
+  const handleOpenChange = (nextOpen) => {
+    setOpen(nextOpen);
+    if (nextOpen) {
+      setUser(userdata ?? {});
+    }
   };
 
+  const getData = (e) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+      updatedAt: istDateTime(),
+    }));
+  };
 
   const handleGenderChange = (value) => {
     setUser((prev) => ({
       ...prev,
       gender: value,
-      createdAt: istDateTime(),
       updatedAt: istDateTime(),
     }));
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // alert("FORM SUBMITTED"); // 👈 add this
-    console.log("data:", user);
-    dispatch(CreateUsername(user));
+    dispatch(UpdateUsername({ id: userdata.id, ...user }));
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    setUser(userdata ?? {});
+    setOpen(false);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button variant="outline" className="bg-blue-300 hover:bg-blue-500">
-          Create User
+          Update User
         </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-sm">
         <form onSubmit={handleFormSubmit}>
           <DialogHeader>
-            <DialogTitle className="font-bold text-2xl">
-              Create New User
-            </DialogTitle>
+            <DialogTitle className="text-2xl font-bold">Edit User</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when youre done.
+              Make changes to your profile here. Click save when you&apos;re done.
             </DialogDescription>
           </DialogHeader>
-          <FieldGroup>
+
+          <FieldGroup className="my-4 flex flex-col gap-3">
+            {fields.map((f) => (
+              <Field key={f.key}>
+                <Label htmlFor={f.key}>{f.label}</Label>
+                <Input
+                  id={f.key}
+                  name={f.key}
+                  value={user?.[f.key] ?? ""}
+                  onChange={getData}
+                  disabled={f.key === "email"}
+                  required={f.key !== "email"}
+                />
+              </Field>
+            ))}
+
             <Field>
-              <Label htmlFor="name">Name</Label>
-              <Input
-                id="name"
-                name="name"
-                placeholder="New User"
-                onChange={getData}
-                required
-              />
-            </Field>
-            <Field>
-              <Label htmlFor="username">Username</Label>
-              <Input
-                id="username"
-                name="username"
-                placeholder="@user"
-                onChange={getData}
-                required
-              />
-            </Field>
-            <Field>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                placeholder="user@gmail.com"
-                onChange={getData}
-                required
-              />
-            </Field>
-            <div className="flex gap-4">
               <Label htmlFor="gender">Gender</Label>
-              <Select onValueChange={handleGenderChange}>
-                <SelectTrigger className="w-[180px]" id="gender">
-                  <SelectValue placeholder="Gender" />
+              <Select value={user?.gender ?? ""} onValueChange={handleGenderChange}>
+                <SelectTrigger id="gender">
+                  <SelectValue placeholder="Select gender" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -116,11 +124,14 @@ const CreateUserForm = () => {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-            </div>
+            </Field>
           </FieldGroup>
+
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button type="button" variant="outline" onClick={handleCancel}>
+                Cancel
+              </Button>
             </DialogClose>
             <Button type="submit">Save changes</Button>
           </DialogFooter>
@@ -130,4 +141,4 @@ const CreateUserForm = () => {
   );
 };
 
-export default CreateUserForm;
+export default EditUserForm;
