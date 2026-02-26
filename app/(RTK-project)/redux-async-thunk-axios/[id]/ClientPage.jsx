@@ -1,14 +1,17 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useMemo } from "react";
 import UsersDetails from "./UsersDetails";
 import { GetUsers } from "../../../slice/Async-thunk-all-methods/UsersAxiosSlice";
+import { IoArrowBackOutline } from "react-icons/io5";
+
 
 const ClientPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const route = useRouter()
 
   const { isLoading, data, isError } = useSelector(
     (state) => state.users
@@ -29,6 +32,8 @@ const ClientPage = () => {
     if (!userId || data.length === 0) return null;
     return data.find((user) => user.id === userId) || null;
   }, [data, userId]);
+  console.log('userById:',userById);
+  
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -36,6 +41,12 @@ const ClientPage = () => {
 
   return (
     <div className="p-4">
+        <button 
+        onClick={() => route.push('/redux-async-thunk-axios')}
+        className="flex items-center px-2 py-1 border rounded bg-stone-500 cursor-pointer">
+          <IoArrowBackOutline />
+          <p>Back</p>
+        </button>
         {userById && <UsersDetails user={userById} />}
     </div>
   );

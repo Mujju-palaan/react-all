@@ -1,17 +1,15 @@
+import axios from "axios";
 import ClientPage from "./ClientPage";
 const API = "https://jsonplaceholder.typicode.com/users/";
 
 export async function generateStaticParams() {
   try {
-    const res = await axios.get(API, { cache: "no-store" });
+    const res = await axios.get(API);
 
-    if (!res.ok) {
-      return [];
-    }
-
-    const users = await res.data
+    const users =  res.data
     return users.map((user) => ({ id: String(user.id) }));
-  } catch {
+  } catch (error) {
+    console.error("Failed to generate static params:", error.message);
     return [];
   }
 }
