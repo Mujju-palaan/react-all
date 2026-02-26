@@ -7,6 +7,7 @@ import EcommCartReducer from './slice/Ecomm_cart/EcartSlice'
 import FetchUsersDataSlice from './slice/Async-thunk/FetchUsersDataSlice'
 import userSlice from './slice/Async-thunk-all-methods/UsersSlice'
 import usernameSlice from './slice/Async-thunk-all-methods/UsernameSlice'
+import UsersAxiosSlice from './slice/Async-thunk-all-methods/UsersAxiosSlice'
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     FetchUser: FetchUsersDataSlice,
     Users: userSlice,
     username: usernameSlice,
+    users: UsersAxiosSlice,
   },
 });
 

@@ -11,6 +11,8 @@ const page = () => {
     { title: "Redux-async-Thunk (Basic to fetch data)", link: "/redux-async-Thunk" },
     { title: "Redux-async-thunk-all", link: "/redux-async-Thunk-all/createUser" },
     { title: "Redux-async-thunk-all-shadcn", link: "/redux-async-thunk-all-shadcn" },
+    { title: "Redux-async-thunk-axios", link: "/redux-async-thunk-axios" },
+    { title: "", link: "/" },
   ];
 
   return (

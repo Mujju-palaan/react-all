@@ -3,17 +3,16 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { DeleteUsername } from "../../slice/Async-thunk-all-methods/UsernameSlice";
-import EditUserForm from "./EditUserForm";
 
-export function DataTable({ data }) {
-  const dispatch = useDispatch();
+const FetchUserData = ({ data }) => {
+  // const dispatch = useDispatch();
+  const route = useRouter();
   return (
     <Table>
       <TableCaption>A list of Users.</TableCaption>
@@ -22,9 +21,10 @@ export function DataTable({ data }) {
           <TableHead className="w-[100px]">Name</TableHead>
           <TableHead>Username</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead>Gender</TableHead>
-          <TableHead>createdAt</TableHead>
-          <TableHead>updatedAt</TableHead>
+          <TableHead>Phone</TableHead>
+          <TableHead>website</TableHead>
+          {/* <TableHead>createdAt</TableHead>
+          <TableHead>updatedAt</TableHead> */}
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -33,18 +33,21 @@ export function DataTable({ data }) {
             <TableCell className="font-medium">{user.name}</TableCell>
             <TableCell>{user.username}</TableCell>
             <TableCell>{user.email}</TableCell>
-            <TableCell>{user.gender}</TableCell>
-            <TableCell>{user.createdAt}</TableCell>
-            <TableCell>{user.updatedAt}</TableCell>
+            <TableCell>{user.phone}</TableCell>
+            <TableCell>{user.website}</TableCell>
+            {/* <TableCell>{user.createdAt}</TableCell>
+            <TableCell>{user.updatedAt}</TableCell> */}
             <TableCell>
               <div className="flex gap-2">
-                <EditUserForm userdata={user} />
                 <button
-                  onClick={() => {
-                    dispatch(DeleteUsername(user.id));
-                  }}
-                  className="bg-red-300 rounded p-1 cursor-pointer"
+                  onClick={() =>
+                    route.push(`redux-async-thunk-axios/${user.id}`)
+                  }
+                  className="bg-blue-300 rounded py-1 px-2 cursor-pointer"
                 >
+                  View
+                </button>
+                <button className="bg-red-300 rounded py-1 px-2 cursor-pointer">
                   Delete
                 </button>
               </div>
@@ -52,12 +55,8 @@ export function DataTable({ data }) {
           </TableRow>
         ))}
       </TableBody>
-      {/* <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter> */}
     </Table>
   );
-}
+};
+
+export default FetchUserData;
