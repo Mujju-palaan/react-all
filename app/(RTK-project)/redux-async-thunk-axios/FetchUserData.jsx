@@ -8,7 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 
 const FetchUserData = ({ data }) => {
   // const dispatch = useDispatch();
@@ -18,6 +17,7 @@ const FetchUserData = ({ data }) => {
       <TableCaption>A list of Users.</TableCaption>
       <TableHeader>
         <TableRow>
+           <TableHead className="w-[100px]">ID</TableHead>
           <TableHead className="w-[100px]">Name</TableHead>
           <TableHead>Username</TableHead>
           <TableHead>Email</TableHead>
@@ -30,6 +30,7 @@ const FetchUserData = ({ data }) => {
       <TableBody>
         {data.map((user) => (
           <TableRow key={user.id}>
+            <TableCell className="font-medium">{user.id}</TableCell>
             <TableCell className="font-medium">{user.name}</TableCell>
             <TableCell>{user.username}</TableCell>
             <TableCell>{user.email}</TableCell>

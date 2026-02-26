@@ -1,36 +1,21 @@
-"use client";
+import ClientPage from "./ClientPage";
+const API = "https://jsonplaceholder.typicode.com/users/";
 
-import { useParams } from "next/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import UsersDetails from "./UsersDetails";
-import { selectUserById } from "../../../slice/Async-thunk-all-methods/UsersAxiosSlice";
+export async function generateStaticParams() {
+  try {
+    const res = await axios.get(API, { cache: "no-store" });
 
-const Page = () => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
-
-  const { isLoading, data, userById, isError } = useSelector(
-    (state) => state.users
-  );
-
-  const userId = Number(id);
-
-  useEffect(() => {
-    if (data.length > 0 && userId) {
-      dispatch(selectUserById(userId));
+    if (!res.ok) {
+      return [];
     }
-  }, [dispatch, data, userId]);
-  console.log('userById:',userById);
-  
 
-  if (isLoading) return <div>Loading...</div>;
+    const users = await res.data
+    return users.map((user) => ({ id: String(user.id) }));
+  } catch {
+    return [];
+  }
+}
 
-  if (isError) return <div>Error occurred</div>;
-
-  if (!userById) return <div>User not found</div>;
-
-  return <UsersDetails user={userById} />;
-};
-
-export default Page;
+export default function Page() {
+  return <ClientPage />;
+}

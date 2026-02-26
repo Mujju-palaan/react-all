@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
 const API = "https://jsonplaceholder.typicode.com/users/";
 
 // GET USERS
@@ -17,8 +16,10 @@ export const GetUsers = createAsyncThunk(
           "Failed to fetch data"
       );
     }
-  }
+  },
 );
+
+// ------------------------------------------------------
 
 const UsersAxiosSlice = createSlice({
   name: "user",
@@ -27,29 +28,24 @@ const UsersAxiosSlice = createSlice({
     data: [],
     userById: null,
     isError: false,
-    error: null,
+    error: null
   },
-  reducers: {
-    selectUserById: (state, action) => {
-      state.userById =
-        state.data.find((user) => user.id === action.payload) || null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(GetUsers.pending, (state) => {
         state.isLoading = true;
-        state.isError = false;
-        state.error = null;
+        state.isError = false
       })
       .addCase(GetUsers.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isError = false
         state.data = action.payload;
       })
       .addCase(GetUsers.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.error = action.payload;
+        state.error = action.payload
       });
   },
 });

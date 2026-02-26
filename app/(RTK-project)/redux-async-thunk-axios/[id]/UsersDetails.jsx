@@ -7,6 +7,9 @@ const UsersDetails = ({user}) => {
 
       <div className="text-sm text-gray-700 space-y-1">
         <p>
+          <strong>Id:</strong> {user.id}
+        </p>
+        <p>
           <strong>Username:</strong> {user.username}
         </p>
         <p>
