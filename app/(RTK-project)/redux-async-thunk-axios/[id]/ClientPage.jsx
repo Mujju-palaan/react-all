@@ -6,6 +6,7 @@ import { useEffect, useMemo } from "react";
 import UsersDetails from "./UsersDetails";
 import { GetUsers } from "../../../slice/Async-thunk-all-methods/UsersAxiosSlice";
 import { IoArrowBackOutline } from "react-icons/io5";
+import CircularProgressWithLabel from '../../../../components/common/Spinner'
 
 
 const ClientPage = () => {
@@ -35,7 +36,7 @@ const ClientPage = () => {
   console.log('userById:',userById);
   
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div><CircularProgressWithLabel /></div>;
 
   if (isError) return <div>Error occurred</div>;
 

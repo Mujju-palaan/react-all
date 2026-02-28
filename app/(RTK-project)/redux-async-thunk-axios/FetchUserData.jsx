@@ -8,16 +8,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { DeleteUser } from "../../slice/Async-thunk-all-methods/UsersAxiosSlice";
 
 const FetchUserData = ({ data }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const route = useRouter();
   return (
     <Table>
       <TableCaption>A list of Users.</TableCaption>
       <TableHeader>
         <TableRow>
-           <TableHead className="w-[100px]">ID</TableHead>
+          <TableHead className="w-[100px]">ID</TableHead>
           <TableHead className="w-[100px]">Name</TableHead>
           <TableHead>Username</TableHead>
           <TableHead>Email</TableHead>
@@ -48,7 +50,12 @@ const FetchUserData = ({ data }) => {
                 >
                   View
                 </button>
-                <button className="bg-red-300 rounded py-1 px-2 cursor-pointer">
+                <button
+                  onClick={() => {
+                    dispatch(DeleteUser(user.id));
+                  }}
+                  className="bg-red-300 rounded py-1 px-2 cursor-pointer"
+                >
                   Delete
                 </button>
               </div>

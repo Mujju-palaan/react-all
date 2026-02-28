@@ -12,6 +12,14 @@ const page = () => {
     { title: "Redux-async-thunk-all", link: "/redux-async-Thunk-all/createUser" },
     { title: "Redux-async-thunk-all-shadcn", link: "/redux-async-thunk-all-shadcn" },
     { title: "Redux-async-thunk-axios", link: "/redux-async-thunk-axios" },
+    { title: "thunk-axios-product", link: "/thunk-axios-product" },
+    { title: "", link: "/" },
+    { title: "", link: "/" },
+    { title: "", link: "/" },
+    { title: "", link: "/" },
+    { title: "", link: "/" },
+    { title: "", link: "/" },
+    { title: "", link: "/" },
     { title: "", link: "/" },
   ];
 

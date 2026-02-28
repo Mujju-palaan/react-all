@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetUsers } from "../../slice/Async-thunk-all-methods/UsersAxiosSlice";
 import FetchUserData from './FetchUserData'
+import CircularProgressWithLabel from '../../../components/common/Spinner'
 
 
 const Page = () => {
@@ -14,7 +15,7 @@ const Page = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div><CircularProgressWithLabel /></div>;
   }
   if (isError) {
     return <div>Error occurred while fetching data</div>;

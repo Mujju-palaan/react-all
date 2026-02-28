@@ -8,6 +8,7 @@ import FetchUsersDataSlice from './slice/Async-thunk/FetchUsersDataSlice'
 import userSlice from './slice/Async-thunk-all-methods/UsersSlice'
 import usernameSlice from './slice/Async-thunk-all-methods/UsernameSlice'
 import UsersAxiosSlice from './slice/Async-thunk-all-methods/UsersAxiosSlice'
+import productSlice from './slice/product-thunk/productSlice'
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     Users: userSlice,
     username: usernameSlice,
     users: UsersAxiosSlice,
+    product: productSlice,
   },
 });
 

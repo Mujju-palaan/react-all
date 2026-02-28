@@ -13,11 +13,38 @@ export const GetUsers = createAsyncThunk(
       return rejectWithValue(
         error.response?.data?.message ||
           error.message ||
-          "Failed to fetch data"
+          "Failed to fetch data",
       );
     }
   },
 );
+
+//DELETE
+export const DeleteUser = createAsyncThunk(
+  "user/delete",
+  async (id, { rejectWithValue }) => {
+    try {
+      await axios.delete(`${API}${id}`);
+      return id;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+//POST
+export const CreateUser = createAsyncThunk(
+  "user/create",
+  async (data, { rejectWithValue }) => {
+    try {
+      res = await axios.post(API);
+      return res.data
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
 
 // ------------------------------------------------------
 
@@ -28,24 +55,35 @@ const UsersAxiosSlice = createSlice({
     data: [],
     userById: null,
     isError: false,
-    error: null
+    error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(GetUsers.pending, (state) => {
         state.isLoading = true;
-        state.isError = false
+        state.isError = false;
       })
       .addCase(GetUsers.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isError = false
+        state.isError = false;
         state.data = action.payload;
       })
       .addCase(GetUsers.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.error = action.payload
+        state.error = action.payload;
+      })
+      .addCase(DeleteUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(DeleteUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = state.data.filter((user) => user.id !== action.payload);
+      })
+      .addCase(DeleteUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });
