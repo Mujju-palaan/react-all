@@ -6,7 +6,6 @@ import { GetProduct } from "../../../slice/product-thunk/productSlice";
 import ProductDetails from "./ProductDetails";
 import BackButton from "../../../../components/common/BackButton";
 
-
 const ClientPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -29,16 +28,21 @@ const ClientPage = () => {
   }, [productId, data]);
 
   console.log(productById);
-  
 
   return (
     <>
       <div className="justify-start">
-        <BackButton url={'/thunk-axios-product/'} />
+        <BackButton url={"/thunk-axios-product/"} />
       </div>
 
       <div className="flex flex-col justify-center items-center p-8">
-        {productById && <ProductDetails product={productById} />}
+        {productById ? (
+          <ProductDetails product={productById} />
+        ) : (
+          <p className="min-h-screen flex justify-center p-12 text-4xl text-red-500">
+            {`Product not found`}
+          </p>
+        )}
       </div>
     </>
   );

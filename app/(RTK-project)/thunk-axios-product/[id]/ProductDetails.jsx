@@ -1,6 +1,7 @@
 import React from "react";
 
 const ProductDetails = ({ product }) => {
+  const [edit, setEdit] = React.useState(false)
   return (
     <div className="w-1/3 rounded-xl border bg-white p-5 shadow-sm space-y-3">
       {/* Product Name */}
@@ -36,6 +37,13 @@ const ProductDetails = ({ product }) => {
       <div className="text-xs text-gray-400 space-y-1">
         <p>Created: {new Date(product.createdAt).toLocaleString()}</p>
         <p>Updated: {new Date(product.updatedAt).toLocaleString()}</p>
+      </div>
+
+      <div className="flex gap-4">
+        <button
+        className="px-2 py-1 rounded bg-blue-500"
+        >Edit</button>
+        <button>Cancel</button>
       </div>
     </div>
   );

@@ -35,9 +35,23 @@ export const CreateProduct = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await axios.post(API, data);
+      console.log(res);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  },
+);
+
+//PUT
+export const UpdateProduct = createAsyncThunk(
+  "product/update",
+  async ({id,data}, { rejectWithValue }) => {
+    try {
+      const res = await axios.put(`${API}${id}`, data)
       return res.data
     } catch (error) {
-      return rejectWithValue(error.response?.data ||error.message);
+      return rejectWithValue(error.message);
     }
   },
 );
@@ -77,17 +91,17 @@ const productSlice = createSlice({
         state.error = action.payload || action.error.message;
       })
       .addCase(CreateProduct.pending, (state) => {
-        state.isLoading = true
+        state.isLoading = true;
       })
       .addCase(CreateProduct.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.data.push(action.payload)
+        state.isLoading = false;
+        state.data.push(action.payload);
       })
       .addCase(CreateProduct.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload || action.error.message
-      })
-  }, 
+        state.isLoading = false;
+        state.error = action.payload || action.error.message;
+      });
+  },
 });
 
 export default productSlice.reducer;
