@@ -49,6 +49,7 @@ export const UpdateProduct = createAsyncThunk(
   async ({id,data}, { rejectWithValue }) => {
     try {
       const res = await axios.put(`${API}${id}`, data)
+      console.log(res)
       return res.data
     } catch (error) {
       return rejectWithValue(error.message);
