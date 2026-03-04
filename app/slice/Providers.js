@@ -1,5 +1,4 @@
-// app/Providers.tsx
-"use client"; // 👈 Important — because Redux uses hooks (client-side only)
+"use client";
 
 import { Provider } from "react-redux";
 import store  from "../store";
