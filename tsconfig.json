@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/slice/todo/todoSlice.js", "components/11)Todos-RTK/AddTodo.jsx", "components/11)Todos-RTK/Todos.jsx"  ],
+, "app/slice/todo/todoSlice.js", "components/11)Todos-RTK/AddTodo.jsx", "components/11)Todos-RTK/Todos.jsx", "components/cards/ProductDummy.jsx"  ],
   "exclude": ["node_modules"]
 }
